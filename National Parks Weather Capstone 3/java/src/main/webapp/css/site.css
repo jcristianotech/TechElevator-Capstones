@@ -1,0 +1,334 @@
+html,
+body,
+.grid-container {
+  height: 100%;
+  margin: 0;
+}
+
+body {}
+
+header {
+  margin-bottom: 2%;
+}
+
+.header-logo img {
+  width: 60%;
+}
+
+.header-nav {
+  color: #2B5B91;
+  background-color: #47361E;
+  padding-left: 30px;
+}
+
+.header-nav div {
+  height: 35px;
+  padding-top: 10px;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  padding-left: 10px;
+  font-size: 1.35em;
+
+}
+
+.header-nav a {
+  font-size: 95%;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: 400;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: white;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+  text-shadow: 1px 1px darkgrey;
+  border-left: 1px solid darkgrey;
+  border-right: 1px solid darkgrey;
+}
+
+footer {
+  padding-left: 30px;
+  height: 10%;
+}
+
+.main-container {
+  padding: 30px;
+  padding-bottom: 50px;
+  background-color: #F9F2E7;
+  margin-bottom: 20px;
+}
+
+/* 
+
+HOME 
+
+*/
+.all-parks-wrapper {}
+
+.park-info {
+  display: flex;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.park-img {
+  width: 40%;
+}
+
+.park-img img {
+  width: 100%;
+}
+
+.park-short-details {
+  width: 60%;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.park-short-details h1,
+.park-short-details h4 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.park-short-details h1>a {
+  text-decoration: none;
+  color: DarkBlue;
+}
+
+.park-short-details h1>a:hover {
+  text-decoration: underline;
+}
+
+/* 
+
+PARK DETAIL 
+
+*/
+
+.park-image-quote-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: red;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 500px;
+  padding-bottom: 10px;
+}
+.park-detail-image {
+  width: 100%;
+}
+
+.quote {
+  color: red;
+  font-weight: bold;
+  font-size: 150%;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-shadow: 2px 2px black;
+}
+
+.quote-source {
+  font-style: italic;
+  font-size: 85%;
+  color: white !important;
+  text-align: right;
+  padding-right: 20px;
+}
+
+
+.park-details-wrapper {}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.1fr 0.9fr 0.3fr 1.8fr 0.1fr;
+  grid-template-rows: .5fr 1fr 1fr 1fr;
+  grid-template-areas:
+    ". park-name park-name park-name ."
+    ". park-description park-description park-description ."
+    ". visitor-info . park-detail ."
+    ". weather weather weather ."
+}
+
+/* 
+
+PARK DETAILS -> SELECTED PARK DETAILS 
+
+*/
+
+.park-description {
+  grid-area: park-description;
+  padding-bottom: 20px;
+}
+
+.park-name {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "name name name"
+    "state-founded . ."
+    "state-founded . .";
+  grid-area: park-name;
+}
+
+.name {
+  grid-area: name;
+}
+
+.state-founded {
+  display: grid;
+  grid-row-gap: .2fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .5fr;
+  grid-template-areas: "state founded";
+  grid-area: state-founded;
+}
+
+.park-year-founded {}
+
+.state {
+  grid-area: state;
+}
+
+.founded {
+  grid-area: founded;
+}
+
+/* 
+
+PARK DETAILS -> VISTOR INFO
+
+*/
+
+.visitor-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "campsite-title campsites-count"
+    "visitor-title visitor-count"
+    "entry-fee-title entry-fee";
+  grid-area: visitor-info;
+  padding-bottom: 20px;
+}
+
+.campsite-title {
+  grid-area: campsite-title;
+}
+
+.visitor-title {
+  grid-area: visitor-title;
+}
+
+.entry-fee-title {
+  grid-area: entry-fee-title;
+}
+
+.campsites-count {
+  grid-area: campsites-count;
+}
+
+.visitor-count {
+  grid-area: visitor-count;
+}
+
+.entry-fee {
+  grid-area: entry-fee;
+}
+
+.park-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "climate-title climate acerage-title acerage"
+    "miles-of-trails-title miles-of-trails elevation-title elevation"
+    "animal-species-title animal-species-count . .";
+  grid-area: park-detail;
+  padding-bottom: 20px;
+}
+
+.climate-title {
+  grid-area: climate-title;
+}
+
+.climate {
+  grid-area: climate;
+}
+
+.acerage-title {
+  grid-area: acerage-title;
+}
+
+.acerage {
+  grid-area: acerage;
+}
+
+.miles-of-trails-title {
+  grid-area: miles-of-trails-title;
+}
+
+.miles-of-trails {
+  grid-area: miles-of-trails;
+}
+
+.elevation-title {
+  grid-area: elevation-title;
+}
+
+.elevation {
+  grid-area: elevation;
+}
+
+.animal-species-title {
+  grid-area: animal-species-title;
+}
+
+.animal-species {
+  grid-area: animal-species-count;
+}
+
+
+.park-weather {
+  grid-area: weather;
+}
+
+.park-weather-main {
+  display: flex;
+}
+
+/* 
+
+PARK DETAILS -> TEMP SWITCH
+
+*/
+.temp-switch {
+
+}
+
+/* 
+
+PARK DETAILS -> PARK WEATHER
+
+*/
+
+.park-weather {
+  display: flex;
+}
+
+
+
+/* SURVEY */
+.survey-form-wrapper {}
+
+.validation-error {
+	color: red;
+}
+
+/* SURVEY RESULTS */
+.survey-results-wrapper {}
