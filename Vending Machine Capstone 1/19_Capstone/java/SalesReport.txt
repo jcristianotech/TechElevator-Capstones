@@ -1,0 +1,20 @@
+Little League Chew                   4
+Chiclets                   8
+Potato Crisps                   12
+Mountain Melter                   16
+TOTAL SALES** $6.25Little League Chew                   4
+Potato Crisps                   4
+Mountain Melter                   4
+TOTAL SALES** $5.5Heavy                   4
+TOTAL SALES** $1.5
+Heavy                   4
+TOTAL SALES** $
+1.5
+
+--------
+Potato Crisps                   4
+Potato Crisps                   3
+Potato Crisps                   2
+TOTAL SALES** $9.149999999999999
+TOTAL SALES** $0.0
+TOTAL SALES** $0.0
