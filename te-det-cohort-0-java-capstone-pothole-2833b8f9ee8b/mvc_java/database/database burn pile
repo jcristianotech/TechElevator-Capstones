@@ -1,0 +1,334 @@
+/*
+-- *************************************************************************************************
+-- This script creates all of the database objects (tables, sequences, etc) for the database
+-- *************************************************************************************************
+
+BEGIN;
+
+-- CREATE statements go here
+DROP TABLE IF EXISTS app_user;
+
+CREATE TABLE app_user (
+  id SERIAL PRIMARY KEY,
+  user_name varchar(32) NOT NULL UNIQUE,
+  password varchar(32) NOT NULL,
+  role varchar(32),
+  salt varchar(255) NOT NULL
+);
+
+COMMIT;
+*/
+
+
+
+SELECT users.user_id FROM users
+JOIN potholes ON potholes.user_id = users.user_id;
+
+INSERT INTO potholes (pothole_id, date_reported, user_id) VALUES (1, '2019-08-20', 1);
+INSERT INTO potholes (pothole_id, date_reported, user_id) VALUES (2, '2019-08-20', 4);
+INSERT INTO potholes (pothole_id, date_reported, user_id) VALUES (3, '2019-08-20', 4);
+INSERT INTO potholes (pothole_id, date_reported, user_id) VALUES (4, '2019-08-20', 2);
+
+SELECT employees.employee_id FROM employees
+JOIN work_orders ON work_orders.employee_id = employees.employee_id;
+
+SELECT potholes.pothole_id FROM potholes
+JOIN work_orders ON work_orders.pothole_id = potholes.pothole_id;
+
+INSERT INTO work_orders (order_id, employee_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (1, 1, 2, '2019-08-21', null, 5, 'This pothole is a danger to all drivers and should be repaired ASAP.');
+
+
+/* Do not need anymore
+ALTER TABLE employees
+RENAME TO staff;
+  
+ALTER TABLE staff
+RENAME COLUMN employee_id TO staff_id;
+
+ALTER TABLE work_orders
+RENAME COLUMN employee_id TO staff_id;
+*/
+
+ALTER TABLE potholes
+ADD COLUMN latitude NUMERIC,
+ADD COLUMN longitude NUMERIC;
+
+UPDATE potholes
+SET latitude = '42.365920', 
+longitude = '-83.072291'
+WHERE pothole_id = 1;
+
+UPDATE potholes
+SET latitude = '42.328155', 
+longitude = '-83.050504'
+WHERE pothole_id = 2;
+
+UPDATE potholes
+SET latitude = '42.364670', 
+longitude = '-83.067960'
+WHERE pothole_id = 3;
+
+UPDATE potholes
+SET latitude = '42.320814', 
+longitude = '-83.077144'
+WHERE pothole_id = 4;
+
+ALTER TABLE potholes
+ALTER COLUMN latitude SET NOT NULL,
+ALTER COLUMN longitude SET NOT NULL;
+
+
+
+42.365920, -83.072291
+
+42.328155, -83.050504
+
+42.364670, -83.067960
+
+42.320814, -83.077144
+
+
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 3, '42.375849', '-83.112454');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (4, 5, '2019-08-22', '2019-08-23', 5, 'This pothole is a danger to all drivers and should be repaired ASAP. This pothole has been repaired.');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (5, 'Case', 'McCarthy', 'cmccarthy@cityofdetroit.net', 'onTheCase');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (6, 'Alex', 'Turcotte', 'aturcotte@cityofdetroit.net', 'TurcotteAWarrior');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (7, 'Matthew', 'Boldy', 'mboldy@cityofdetroit.net', 'BoldyPatching');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (8, 'Cam', 'York', 'cyork@cityofdetroit.net', 'YorkyDoodle');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (9, 'John', 'Beecher', 'jbeecher@cityofdetroit.net', 'BeecherBum');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (10, 'Bobby', 'Brink', 'bbrink@cityofdetroit.net', 'onTheBrink');
+
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Brock', 'Faber', 'Fabercated34@gmail.com', 'FaberFarAway');
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Eamon', 'Powell', 'eamonp46@gmail.com', 'EamonPassThePuck');
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Connor', 'Kelley', 'kelleyc@gmail.com', 'KelleyTheBoy');
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Tyler', 'Kleven', 'KlevenScores@gmail.com', 'KlevenGameStreak');
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Daniel', 'Laatsch', 'laatschd@gmail.com', 'DoubleAFun');
+
+
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 9, '42.365041', '-83.067135');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 9, '42.375570', '-83.113658');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 6, '42.377725', '-83.115056');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 8, '42.377626', '-83.115079');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 5, '42.359896', '-83.137799');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 5, '42.347440', '-83.165924');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 5, '42.417211', '-83.137845');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 7, '42.439133', '-83.141829');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-21', 7, '42.445858', '-83.150864');
+
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (10, 1, '2019-08-21', null, 2, 'Minor pothole, should be an easy fix.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (8, 3, '2019-08-21', null, 1, 'An inconvenience, but not urgent.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (9, 4, '2019-08-21', null, 5, 'Deep pothole, rebar visible. Needs urgent repairs.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (6, 7, '2019-08-21', null, 4, 'Not too deep, but in a hard location to repair.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (7, 11, '2019-08-21', null, 5, 'Deep pothole, located near railroad tracks. Check train schedule to ensure safety.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (5, 13, '2019-08-22', null, 2, 'Minor pothole, should be an easy fix. Located on Detroit side of 8 Mile Rd.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (5, 12, '2019-08-22', null, 4, 'Severe pothole, fix during non-rush hours. Located on Detroit side of 8 Mile Rd.');
+
+
+
+UPDATE work_orders
+SET latitude = '42.446112',
+longitude = '-83.141148'
+WHERE pothole_id = 14;
+
+
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 6, '42.375463', '-83.110126');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (10, 1, '2019-08-21', null, 2, 'Minor pothole, should be an easy fix.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (8, 3, '2019-08-21', null, 1, 'An inconvenience, but not urgent.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (9, 4, '2019-08-21', null, 5, 'Deep pothole, rebar visible. Needs urgent repairs.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (6, 7, '2019-08-21', null, 4, 'Not too deep, but in a hard location to repair.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (7, 11, '2019-08-26', null, 5, 'Deep pothole.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (5, 26, '2019-08-26', null, 2, 'Minor pothole, should be an easy fix. Located on Detroit side of 8 Mile Rd.')
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (5, 27, '2019-08-26', null, 4, 'Severe pothole, fix during non-rush hours. Located on Detroit side of 8 Mile Rd.')
+
+
+
+
+///////
+
+
+
+
+SELECT users.user_id FROM users
+JOIN potholes ON potholes.user_id = users.user_id;
+
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 1, '42.365920', '-83.072291');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 4, '42.328155', '-83.050504');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 4, '42.364670', '-83.067960');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 2, '42.320814', '-83.077144');
+
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 1, '42.365920', '-83.072291');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 4, '42.328155', '-83.050504');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 4, '42.364670', '-83.067960');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-20', 2, '42.320814', '-83.077144');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 6, '42.377177', '-83.114662');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 1, '42.390152', '-83.082859');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 2, '42.346950', '-83.001916');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 4, '42.353364', '-82.995971');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 7, '42.360482', '-82.996036');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 9, '42.379927', '-83.032891');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 3, '42.434644', '-83.155623');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 3, '42.433882', '-83.153908');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 3, '42.433519', '-83.153091');
+INSERT INTO potholes (date_reported, user_id, latitude, longitude) VALUES ('2019-08-26', 1, '42.431454', '-83.154278');
+
+SELECT staff.staff_id FROM staff
+JOIN work_orders ON work_orders.staff_id = staff.staff_id;
+
+SELECT potholes.pothole_id FROM potholes
+JOIN work_orders ON work_orders.pothole_id = potholes.pothole_id;
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (1, 2, '2019-08-21', null, 5, 'This pothole is a danger to all drivers and should be repaired ASAP.');
+
+INSERT INTO work_orders (staff_id, pothole_id, date_inspected, date_repaired, rank, description)
+VALUES (4, 5, '2019-08-22', '2019-08-23', 5, 'This pothole is a danger to all drivers and should be repaired ASAP. This pothole has been repaired.');
+
+
+
+BEGIN TRANSACTION;
+
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Luke', 'Tuch', 'luketheduke39@gmail.com', 'Lukeingforpotholes');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Hunter', 'Strand', 'hutingstrand@gmail.com', 'potholeHunter');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Chase', 'Yoder', 'theyoderler53@gmail.com', 'YoderLayHeeHoo');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Danny', 'Weight', 'ohdannyboy29@gmail.com', 'WeightLifter');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Brock', 'Faber', 'Fabercated34@gmail.com', 'FaberFarAway');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Eamon', 'Powell', 'eamonp46@gmail.com', 'EamonPassThePuck');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Connor', 'Kelley', 'kelleyc@gmail.com', 'KelleyTheBoy');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Tyler', 'Kleven', 'KlevenScores@gmail.com', 'KlevenGameStreak');
+INSERT INTO users (first_name, last_name, email, password)
+VALUES ('Daniel', 'Laatsch', 'laatschd@gmail.com', 'DoubleAFun');
+
+
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (1, 'Jack', 'Hughes', 'jhughes@cityofdetroit.net', 'Potholehockey');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (2, 'Spencer', 'Knight', 'sknight@cityofdetroit.net', 'FillthHole');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (3, 'Trevor', 'Zegras', 'tzegras@cityofdetroit.net', 'Password135');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (4, 'Cole', 'Caufield', 'ccaufield@cityofdetroit.net', 'Edvat@%$re');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (5, 'Case', 'McCarthy', 'cmccarthy@cityofdetroit.net', 'onTheCase');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (6, 'Alex', 'Turcotte', 'aturcotte@cityofdetroit.net', 'TurcotteAWarrior');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (7, 'Matthew', 'Boldy', 'mboldy@cityofdetroit.net', 'BoldyPatching');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (8, 'Cam', 'York', 'cyork@cityofdetroit.net', 'YorkyDoodle');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (9, 'John', 'Beecher', 'jbeecher@cityofdetroit.net', 'BeecherBum');
+INSERT INTO staff (staff_id, first_name, last_name, email, password)
+VALUES (10, 'Bobby', 'Brink', 'bbrink@cityofdetroit.net', 'onTheBrink');
+
+
+SELECT users.user_id FROM users
+JOIN potholes ON potholes.user_id = users.user_id;
+SELECT staff.staff_id FROM staff
+JOIN potholes ON potholes.staff_id = staff.staff_id;
+
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.365920', '-83.072291', 10, '2019-08-20', '2019-08-21', null, 2, 'Minor pothole, should be an easy fix.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.328155', '-83.050504', 1, '2019-08-20',  '2019-08-21', null, 5, 'This pothole is a danger to all drivers and should be repaired ASAP.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.364670', '-83.067960', 8, '2019-08-20', '2019-08-21', null, 1, 'An inconvenience, but not urgent.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (2, '42.320814', '-83.077144', 9, '2019-08-20', '2019-08-21', null, 5, 'Deep pothole, rebar visible. Needs urgent repairs.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.365920', '-83.072291', 4, '2019-08-20', '2019-08-22', '2019-08-23', 5, 'This pothole is a danger to all drivers and should be repaired ASAP. This pothole has been repaired.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.328155', '-83.050504', null, '2019-08-20', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.364670', '-83.067960', 6, '2019-08-20', '2019-08-21', null, 4, 'Not too deep, but in a hard location to repair.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (2, '42.320814', '-83.077144', null,'2019-08-20', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (6, '42.377177', '-83.114662', null,'2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.390152', '-83.082859', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (2, '42.346950', '-83.001916', 7, '2019-08-26', '2019-08-26', null, 5, 'Deep pothole.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.353364', '-82.995971', null,'2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (7, '42.360482', '-82.996036', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (9, '42.379927', '-83.032891', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (3, '42.434644', '-83.155623', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (3, '42.433882', '-83.153908', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (3, '42.433519', '-83.153091', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.431454', '-83.154278', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (6, '42.365041', '-83.067135', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (6, '42.375570', '-83.113658', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (3, '42.377725', '-83.115056', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.377626', '-83.115079', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.359896', '-83.137799', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (1, '42.347440', '-83.165924', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (4, '42.417211', '-83.137845', null, '2019-08-26', null, null, null, null);
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (5, '42.446112', '-83.141148', 5, '2019-08-26', '2019-08-26', null, 2, 'Minor pothole, should be an easy fix. Located on Detroit side of 8 Mile Rd.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (6, '42.445858', '-83.150864', 5, '2019-08-26', '2019-08-26', null, 4, 'Severe pothole, fix during non-rush hours. Located on Detroit side of 8 Mile Rd.');
+INSERT INTO potholes (user_id, latitude, longitude, staff_id, date_reported, date_inspected, date_repaired, rank, description) VALUES (7, '42.375463', '-83.110126', null, '2019-08-26', null, null, null, null);
+
+
+COMMIT TRANSACTION;  
+
+
+		<!--	
+			<c:if test="${hole.dateRepaired != null}">
+			var plat 
+			var plng
+			var marker = google.maps.Marker({
+				position: {lat: plat, lng: plng},
+			icon: {
+				url: "http://labs.google.com/ridefinder/images/mm_20_green.png"
+			},
+			map: map
+			});
+			</c:if>
+			-->
